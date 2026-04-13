@@ -1,0 +1,199 @@
+/* tokens/tokens.css
+ * Ant Design 6 Token → CSS 变量桥接层
+ * 作为 AntD Token 和 Tailwind CSS 的桥梁
+ *
+ * 使用说明：
+ * 1. 在项目中引入此文件：import './tokens/tokens.css'
+ * 2. AntD 会自动生成这些 CSS 变量
+ * 3. Tailwind CSS 可以通过 @theme 使用这些变量
+ */
+
+/* =========== 全局 Token 桥接 =========== */
+
+:root {
+  /* 颜色系统 - 主要色 */
+  --ant-primary-color: #1677ff;
+  --ant-primary-color-hover: #40a9ff;
+  --ant-primary-color-active: #096dd9;
+  --ant-primary-color-deprecated-bg: #40a9ff;
+  --ant-primary-color-outline: #40a9ff;
+
+  /* 成功色 */
+  --ant-success-color: #52c41a;
+  --ant-success-color-hover: #73d13d;
+  --ant-success-color-active: #389e0d;
+  --ant-success-color-outline: #52c41a;
+
+  /* 警告色 */
+  --ant-warning-color: #faad14;
+  --ant-warning-color-hover: #ffc53d;
+  --ant-warning-color-active: #d48806;
+  --ant-warning-color-outline: #faad14;
+
+  /* 错误色 */
+  --ant-error-color: #f5222d;
+  --ant-error-color-hover: #ff4d4f;
+  --ant-error-color-active: #cf1322;
+  --ant-error-color-outline: #f5222d;
+
+  /* 信息色 */
+  --ant-info-color: #1890ff;
+  --ant-info-color-hover: #40a9ff;
+  --ant-info-color-active: #096dd9;
+  --ant-info-color-outline: #1890ff;
+
+  /* 中性色背景 */
+  --ant-color-white: #ffffff;
+  --ant-color-bg-layout: #f0f2f5;
+  --ant-color-bg-container: #ffffff;
+  --ant-color-bg-elevated: #ffffff;
+  --ant-color-bg-mask: rgba(0, 0, 0, 0.45);
+
+  /* 中性色文本 */
+  --ant-text-color: rgba(0, 0, 0, 0.88);
+  --ant-text-color-secondary: rgba(0, 0, 0, 0.65);
+  --ant-text-color-inverse: #ffffff;
+  --ant-text-color-disabled: rgba(0, 0, 0, 0.25);
+  --ant-text-color-description: rgba(0, 0, 0, 0.45);
+
+  /* 边框颜色 */
+  --ant-border-color: #d9d9d9;
+  --ant-border-color-base: #d9d9d9;
+  --ant-border-color-split: #f0f0f0;
+  --ant-border-color-dark: #262626;
+
+  /* 字体系统 */
+  --ant-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+  --ant-font-family-code: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+
+  /* 字号 */
+  --ant-font-size-base: 14px;
+  --ant-font-size-lg: 16px;
+  --ant-font-size-sm: 12px;
+
+  /* 间距 */
+  --ant-space: 4px;
+  --ant-space-unit: 8px;
+
+  /* 圆角 */
+  --ant-border-radius-base: 6px;
+  --ant-border-radius-sm: 4px;
+  --ant-border-radius-lg: 8px;
+  --ant-border-radius-outline: 4px;
+
+  /* 阴影 */
+  --ant-shadow-1: 0 2px 8px rgba(0, 0, 0, 0.15);
+  --ant-shadow-2: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --ant-shadow-3: 0 6px 16px rgba(0, 0, 0, 0.15);
+
+  /* 动画时间 */
+  --ant-motion-duration-slow: 0.3s;
+  --ant-motion-duration-base: 0.2s;
+  --ant-motion-duration-fast: 0.1s;
+}
+
+/* 暗色主题适配 */
+[data-theme="dark"] {
+  /* 调整颜色值以适应暗色模式 */
+  --ant-color-white: #141414;
+  --ant-color-bg-layout: #0f0f0f;
+  --ant-color-bg-container: #1f1f1f;
+  --ant-color-bg-elevated: #2b2b2b;
+
+  --ant-text-color: rgba(255, 255, 255, 0.85);
+  --ant-text-color-secondary: rgba(255, 255, 255, 0.65);
+  --ant-text-color-description: rgba(255, 255, 255, 0.45);
+
+  --ant-border-color: #434343;
+  --ant-border-color-base: #434343;
+  --ant-border-color-split: #262626;
+
+  --ant-shadow-1: 0 2px 8px rgba(0, 0, 0, 0.45);
+  --ant-shadow-2: 0 4px 12px rgba(0, 0, 0, 0.45);
+  --ant-shadow-3: 0 6px 16px rgba(0, 0, 0, 0.45);
+}
+
+/* =========== 语义化变量映射 =========== */
+
+/* 背景色 */
+:root {
+  /* 主要背景 */
+  --background: var(--ant-color-bg-container);
+  --background-secondary: var(--ant-color-bg-elevated);
+  --background-layout: var(--ant-color-bg-layout);
+
+  /* 表面色 */
+  --surface: var(--ant-color-bg-elevated);
+  --surface-hover: var(--ant-color-bg-container);
+  --surface-border: var(--ant-border-color-split);
+
+  /* 文本色 */
+  --foreground: var(--ant-text-color);
+  --foreground-secondary: var(--ant-text-color-secondary);
+  --foreground-tertiary: var(--ant-text-color-description);
+  --foreground-inverse: var(--ant-text-color-inverse);
+}
+
+/* 边框色 */
+:root {
+  --border: var(--ant-border-color);
+  --border-light: var(--ant-border-color-split);
+  --border-focus: var(--ant-primary-color);
+}
+
+/* 状态色 */
+:root {
+  --color-primary: var(--ant-primary-color);
+  --color-success: var(--ant-success-color);
+  --color-warning: var(--ant-warning-color);
+  --color-error: var(--ant-error-color);
+  --color-info: var(--ant-info-color);
+}
+
+/* 尺寸变量 */
+:root {
+  --radius: var(--ant-border-radius-base);
+  --radius-sm: var(--ant-border-radius-sm);
+  --radius-lg: var(--ant-border-radius-lg);
+}
+
+/* =========== 工具类前缀 =========== */
+
+/* 为 Tailwind CSS 提供基础样式 */
+.ant-btn {
+  font-family: var(--ant-font-family);
+  font-size: var(--ant-font-size-base);
+  line-height: 1.5715;
+  border-radius: var(--ant-border-radius-base);
+}
+
+.ant-input {
+  font-family: var(--ant-font-family);
+  font-size: var(--ant-font-size-base);
+  line-height: 1.5715;
+}
+
+.ant-card {
+  font-family: var(--ant-font-family);
+  font-size: var(--ant-font-size-base);
+  line-height: 1.5715;
+}
+
+/* 高对比度模式支持 */
+@media (prefers-contrast: high) {
+  :root {
+    --ant-border-color: #000000;
+    --ant-shadow-1: none;
+    --ant-shadow-2: none;
+    --ant-shadow-3: none;
+  }
+}
+
+/* 减少动画支持 */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

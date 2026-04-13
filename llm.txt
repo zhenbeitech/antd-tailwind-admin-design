@@ -1,0 +1,115 @@
+# Ant Design 6 + Tailwind CSS 4 企业级管理后台设计规范
+
+## 项目概述
+
+这是一个为 AI Agents（Claude/Cursor/Copilot）准备的企业级管理后台设计规范，结合了 Ant Design 6 的组件生态和 Tailwind CSS 4 的强大样式系统。
+
+## 📖 使用方式
+
+直接克隆仓库或复制所需文件到你的项目中：
+
+```bash
+# 克隆整个设计规范
+git clone https://github.com/zhenbei/antd-tailwind-admin-design.git
+
+# 或仅复制需要的文件
+cp -r tokens/* your-project/src/styles/
+cp -r components/* your-project/src/components/
+cp -r pages/* your-project/src/pages/
+```
+
+## ✨ 核心特性
+
+- 🎨 **双主题优先**：浅色/深色模式同等重要
+- 🔧 **Design Token 完整支持**：Ant Design 6 Token 系统深度集成
+- 🌈 **Tailwind CSS 4 集成**：使用 @theme 指令无缝集成
+- 📝 **语义化样式**：bg-background、text-primary 等可读性强的类名
+- 🤖 **AI 友好**：结构化设计规范，AI 可理解和执行
+- 📱 **响应式设计**：内置响应式布局支持
+- 🔍 **高对比度模式**：符合 WCAG 2.1 AA 标准
+
+## 设计理念
+
+### 三层样式架构
+
+1. **基础层**：Ant Design Token（种子值 → 组件）
+2. **桥接层**：CSS Variable（Token → CSS 变量）
+3. **应用层**：Tailwind Class（CSS 变量 → 工具类）
+
+### 双模式优先
+
+我们采用"双模式优先"的设计理念，将浅色模式和深色模式放在同等重要的位置，避免将浅色模式作为默认的"主要"模式。
+
+## 组件规范
+
+### 基础组件
+
+所有基础组件都应该：
+- 使用 Ant Design 组件作为基础
+- 通过 CSS 变量进行样式定制
+- 支持主题切换
+- 遵循语义化命名
+
+### 布局组件
+
+提供企业级的布局解决方案：
+- PageContainer：页面容器
+- ContentSurface：内容表面
+- Breadcrumb：面包屑导航
+
+### 页面模板
+
+提供常用的页面模板：
+- 列表页面（ListPage）
+- 详情页面（DetailPage）
+- 表单页面（FormPage）
+
+## 主题系统
+
+### Design Token 流程
+
+```
+Seed (种子) → Map (映射) → Alias (别名) → Component (组件)
+```
+
+### 主题配置
+
+通过 `ConfigProvider.theme.algorithm` 实现主题切换，支持：
+- 浅色模式
+- 深色模式
+- 高对比度模式
+
+## 样式指南
+
+### CSS 变量
+
+所有样式都应该通过 CSS 变量定义，确保主题切换的一致性。
+
+### Tailwind 集成
+
+使用 Tailwind CSS 4 的 `@theme` 指令集成 Ant Design Token，创建语义化的工具类。
+
+## 开发指南
+
+### 文件结构
+
+```
+antd-tailwind-admin-design/
+├── DESIGN.md                    # 设计规范（9节结构）
+├── tokens/                      # 样式 token 定义
+│   ├── tokens.css              # CSS 变量桥接
+│   └── styles.css             # Tailwind 入口
+├── components/                  # 组件实现
+│   ├── layout.tsx              # 布局组件
+│   └── button.example.yaml     # 组件示例
+└── pages/                      # 页面模板
+    └── list-page.template.tsx  # 列表页面模板
+```
+
+### 贡献指南
+
+请参考 `CONTRIBUTING.md` 了解如何贡献代码。
+
+## 许可证
+
+本项目采用 MIT 许可证。

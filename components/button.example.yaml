@@ -1,0 +1,104 @@
+# Button 组件示例
+# 包含 AntD Button + Tailwind CSS 的最佳实践使用方式
+
+## 基础用法
+```tsx
+import { Button } from 'antd';
+
+// ✅ 正确：使用 AntD 原生样式
+<Button type="primary">主要按钮</Button>
+<Button>默认按钮</Button>
+<Button type="dashed">虚线按钮</Button>
+<Button type="text">文本按钮</Button>
+<Button type="link">链接按钮</Button>
+```
+
+## 状态按钮
+```tsx
+import { Button } from 'antd';
+
+// ✅ 正确：使用状态属性
+<Button type="primary" loading={isLoading}>
+  加载中
+</Button>
+
+<Button danger onClick={handleDelete}>
+  删除
+</Button>
+
+<Button disabled={!hasPermission}>
+  禁用按钮
+</Button>
+```
+
+## 按钮组合
+```tsx
+import { Button, Space } from 'antd';
+
+// ✅ 正确：使用 Space 组件控制间距
+<Space>
+  <Button type="primary">提交</Button>
+  <Button>取消</Button>
+</Space>
+
+// ✅ 正确：分组按钮
+<Button.Group>
+  <Button>上一页</Button>
+  <Button type="primary">下一页</Button>
+</Button.Group>
+```
+
+## 自定义样式（配合 Tailwind）
+```tsx
+import { Button } from 'antd';
+
+// ✅ 正确：使用语义类
+<Button className="bg-primary-hover hover:bg-primary-active">
+  自定义按钮
+</Button>
+
+// ✅ 正确：配合尺寸
+<Button className="px-6 py-3 text-lg">
+  大号按钮
+</Button>
+```
+
+## 图标按钮
+```tsx
+import { Button } from 'antd';
+import { SearchOutlined, DownloadOutlined } from '@ant-design/icons';
+
+// ✅ 正确：内置图标
+<Button type="primary" icon={<SearchOutlined />}>
+  搜索
+</Button>
+
+// ✅ 正确：图标+文字
+<Button icon={<DownloadOutlined />}>
+  下载
+</Button>
+```
+
+## 常见错误
+```tsx
+// ❌ 错误：不要用 Tailwind 手写按钮样式
+<button className="bg-blue-500 text-white px-4 py-2 rounded">
+  错误的按钮
+</button>
+
+// ❌ 错误：不要覆盖 AntD 基础样式
+<Button style={{ backgroundColor: '#1677ff', color: '#fff' }}>
+  错误的样式覆盖
+</Button>
+
+// ✅ 正确：使用 AntD 的 type 和 size 属性
+<Button type="primary" size="large">
+  正确的用法
+</Button>
+```
+
+## 最佳实践总结
+1. 优先使用 AntD 的 `type`、`size`、`loading` 等内置属性
+2. 按钮间距使用 `Space` 组件，不要用 margin
+3. 图标优先使用内置图标组件
+4. 特殊样式配合语义类，不要硬编码颜色值

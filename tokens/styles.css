@@ -1,0 +1,280 @@
+/* tokens/styles.css
+ * Tailwind CSS 4 样式入口文件
+ * 使用 @theme 指令集成 Ant Design Token
+ *
+ * 使用方式：
+ * 1. 在主 CSS 文件中引入：@import './tokens/styles.css'
+ * 2. 或者作为 Tailwind 插件使用
+ */
+
+@import "tailwindcss";
+
+/* =========== @theme 配置 =========== */
+@theme {
+  /* 引入 AntD Token CSS 变量 */
+  /* 从 tokens.css 导入的变量，确保这两个文件在同一个域下 */
+  --color-primary: var(--ant-primary-color, #1677ff);
+  --color-primary-hover: var(--ant-primary-color-hover, #40a9ff);
+  --color-primary-active: var(--ant-primary-color-active, #096dd9);
+
+  --color-success: var(--ant-success-color, #52c41a);
+  --color-warning: var(--ant-warning-color, #faad14);
+  --color-error: var(--ant-error-color, #f5222d);
+  --color-info: var(--ant-info-color, #1890ff);
+
+  /* 背景色 */
+  --bg-background: var(--ant-color-bg-container, #ffffff);
+  --bg-surface: var(--ant-color-bg-elevated, #ffffff);
+  --bg-secondary: var(--ant-color-bg-elevated, #fafafa);
+  --bg-layout: var(--ant-color-bg-layout, #f0f2f5);
+  --bg-inverted: var(--ant-text-color-inverse, #ffffff);
+
+  /* 文本色 */
+  --text-primary: var(--ant-text-color, rgba(0, 0, 0, 0.88));
+  --text-secondary: var(--ant-text-color-secondary, rgba(0, 0, 0, 0.65));
+  --text-tertiary: var(--ant-text-color-description, rgba(0, 0, 0, 0.45));
+  --text-inverted: var(--ant-text-color-inverse, #ffffff);
+
+  /* 边框色 */
+  --border: var(--ant-border-color-base, #d9d9d9);
+  --border-light: var(--ant-border-color-split, #f0f0f0);
+  --border-focus: var(--ant-primary-color-outline, #40a9ff);
+
+  /* 间距 - 基于 AntD 的 space unit */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+
+  /* 字体系统 */
+  --font-family-sans: var(--ant-font-family, -apple-system, BlinkMacSystemFont, sans-serif);
+  --font-family-mono: var(--ant-font-family-code, SFMono-Regular, Consolas, monospace);
+
+  /* 字号 */
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 14px; /* 与 AntD base 一致 */
+  --text-lg: 16px;
+  --text-xl: 20px;
+  --text-2xl: 24px;
+
+  /* 行高 */
+  --leading-tight: 1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+
+  /* 字重 */
+  --font-light: 300;
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+
+  /* 圆角 */
+  --radius-none: 0;
+  --radius-sm: 4px;
+  --radius: 6px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-full: 9999px;
+
+  /* 阴影 */
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+  /* 过渡动画 */
+  --transition-fast: 0.1s ease;
+  --transition-base: 0.2s ease;
+  --transition-slow: 0.3s ease;
+}
+
+/* =========== 基础样式重置 =========== */
+@layer base {
+  /* 重置浏览器默认样式 */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    border-width: 0;
+    border-style: solid;
+    border-color: var(--border-light);
+  }
+
+  html {
+    font-family: var(--font-family-sans);
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--bg-background);
+    color: var(--text-primary);
+    margin: 0;
+    padding: 0;
+  }
+
+  /* 针对 AntD 组件的样式优化 */
+  .ant-btn {
+    @apply inline-flex items-center justify-center font-medium whitespace-nowrap
+           h-10 px-4 py-2 text-sm rounded-md transition-colors duration-200
+           focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary;
+  }
+
+  .ant-input {
+    @apply w-full px-3 py-2 text-sm border border-gray-300 rounded-md
+           focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent
+           transition-colors duration-200;
+  }
+
+  .ant-card {
+    @apply bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden;
+  }
+
+  .ant-table {
+    @apply w-full;
+  }
+
+  .ant-pagination {
+    @apply flex items-center justify-center space-x-2 mt-4;
+  }
+}
+
+/* =========== 语义化工具类 =========== */
+@layer utilities {
+  /* 背景色 */
+  .bg-background {
+    background-color: var(--bg-background);
+  }
+
+  .bg-surface {
+    background-color: var(--bg-surface);
+  }
+
+  .bg-secondary {
+    background-color: var(--bg-secondary);
+  }
+
+  .bg-layout {
+    background-color: var(--bg-layout);
+  }
+
+  /* 文本色 */
+  .text-primary {
+    color: var(--text-primary);
+  }
+
+  .text-secondary {
+    color: var(--text-secondary);
+  }
+
+  .text-tertiary {
+    color: var(--text-tertiary);
+  }
+
+  /* 状态色 */
+  .color-primary {
+    color: var(--color-primary);
+  }
+
+  .bg-primary {
+    background-color: var(--color-primary);
+  }
+
+  .bg-primary-hover:hover {
+    background-color: var(--color-primary-hover);
+  }
+
+  /* 边框 */
+  .border-default {
+    border-color: var(--border);
+  }
+
+  .border-focus:focus {
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 2px var(--color-primary);
+  }
+
+  /* 卡片样式 */
+  .card {
+    @apply bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden;
+  }
+
+  .card-header {
+    @apply px-6 py-4 border-b border-gray-200;
+  }
+
+  .card-body {
+    @apply px-6 py-4;
+  }
+
+  .card-footer {
+    @apply px-6 py-4 border-t border-gray-200 bg-gray-50;
+  }
+
+  /* 页面容器 */
+  .page-container {
+    @apply min-h-screen bg-layout;
+  }
+
+  .content-surface {
+    @apply bg-background border border-gray-200 rounded-lg shadow-sm;
+  }
+}
+
+/* =========== 响应式工具类 =========== */
+@layer responsive {
+  /* 响应式容器 */
+  .container {
+    @apply mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* 响应式间距 */
+  .section-padding {
+    @apply py-12 sm:py-16 lg:py-20;
+  }
+
+  /* 响应式网格 */
+  .grid-responsive {
+    @apply grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
+  }
+}
+
+/* =@@components
+ * 可以在这里添加自定义组件
+ */
+
+/* 按钮组 */
+@layer components {
+  .btn-group {
+    @apply flex space-x-2;
+  }
+
+  .btn-group .ant-btn:not(:last-child) {
+    @apply rounded-r-none;
+  }
+
+  .btn-group .ant-btn:not(:first-child) {
+    @apply rounded-l-none;
+  }
+}
+
+/* =========== 暗色模式 =========== */
+@layer utilities {
+  .dark {
+    --bg-background: var(--ant-color-bg-container, #1f1f1f);
+    --bg-surface: var(--ant-color-bg-elevated, #2b2b2b);
+    --text-primary: var(--ant-text-color, rgba(255, 255, 255, 0.85));
+    --text-secondary: var(--ant-text-color-secondary, rgba(255, 255, 255, 0.65));
+    --text-tertiary: var(--ant-text-color-description, rgba(255, 255, 255, 0.45));
+    --border: var(--ant-border-color-base, #434343);
+    --border-light: var(--ant-border-color-split, #262626);
+  }
+}

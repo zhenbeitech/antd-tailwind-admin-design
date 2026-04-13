@@ -1,0 +1,273 @@
+# Table 组件示例
+# 包含 AntD Table + Tailwind CSS 的最佳实践使用方式
+
+## 基础表格
+```tsx
+import { Table, Tag } from 'antd';
+
+const columns = [
+  {
+    title: '用户名',
+    dataIndex: 'username',
+    key: 'username',
+    sorter: true,
+  },
+  {
+    title: '邮箱',
+    dataIndex: 'email',
+    key: 'email',
+  },
+  {
+    title: '状态',
+    dataIndex: 'status',
+    key: 'status',
+    render: (status: string) => (
+      <Tag color={status === 'active' ? 'green' : 'red'}>
+        {status === 'active' ? '活跃' : '禁用'}
+      </Tag>
+    ),
+  },
+  {
+    title: '创建时间',
+    dataIndex: 'createdAt',
+    key: 'createdAt',
+    sorter: true,
+    render: (date: string) => (
+      <span className="text-tertiary">
+        {new Date(date).toLocaleDateString()}
+      </span>
+    ),
+  },
+];
+
+const data = [
+  { key: '1', username: '张三', email: 'zhangsan@example.com', status: 'active', createdAt: '2024-01-01' },
+  { key: '2', username: '李四', email: 'lisi@example.com', status: 'inactive', createdAt: '2024-01-02' },
+];
+
+<Table
+  columns={columns}
+  dataSource={data}
+  rowKey="username"
+  pagination={{
+    total: 100,
+    pageSize: 10,
+    showSizeChanger: true,
+    showQuickJumper: true,
+    showTotal: (total) => `共 ${total} 条`,
+  }}
+/>
+```
+
+## 高级表格（带操作列）
+```tsx
+import { Table, Button, Space, Popconfirm } from 'antd';
+
+const columns = [
+  // ... 其他列定义
+  {
+    title: '操作',
+    key: 'action',
+    render: (_, record) => (
+      <Space>
+        <Button type="link" onClick={() => handleEdit(record)}>
+          编辑
+        </Button>
+        <Popconfirm
+          title="确定要删除吗？"
+          onConfirm={() => handleDelete(record.id)}
+        >
+          <Button type="link" danger>
+            删除
+          </Button>
+        </Popconfirm>
+      </Space>
+    ),
+  },
+];
+
+// ✅ 正确：使用语义类控制样式
+<Table
+  columns={columns}
+  dataSource={data}
+  rowKey="id"
+  size="middle"
+  bordered
+  className="shadow-sm"
+/>
+```
+
+## 加载状态
+```tsx
+import { Table, Spin } from 'antd';
+
+function TableWithLoading() {
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  const loadData = async () => {
+    setLoading(true);
+    try {
+      const response = await fetchUsers();
+      setData(response.data);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <Spin spinning={loading}>
+      <Table
+        columns={columns}
+        dataSource={data}
+        rowKey="id"
+        locale={{ emptyText: '暂无数据' }}
+      />
+    </Spin>
+  );
+}
+```
+
+## 选择和批量操作
+```tsx
+import { Table, Button, Space, message } from 'antd';
+
+const rowSelection = {
+  onChange: (selectedRowKeys, selectedRows) => {
+    console.log('selectedRowKeys: ', selectedRowKeys);
+  },
+  getCheckboxProps: (record) => ({
+    disabled: record.name === '禁用用户',
+  }),
+};
+
+function BatchTable() {
+  const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+
+  const handleBatchDelete = () => {
+    if (selectedRowKeys.length === 0) {
+      message.warning('请选择要删除的记录');
+      return;
+    }
+
+    // 批量删除逻辑
+    message.success(`成功删除 ${selectedRowKeys.length} 条记录`);
+    setSelectedRowKeys([]);
+  };
+
+  return (
+    <>
+      <div className="mb-4">
+        <Space>
+          <Button
+            type="primary"
+            danger
+            onClick={handleBatchDelete}
+            disabled={selectedRowKeys.length === 0}
+          >
+            批量删除 ({selectedRowKeys.length})
+          </Button>
+        </Space>
+      </div>
+
+      <Table
+        rowSelection={{
+          type: 'checkbox',
+          selectedRowKeys,
+          onChange: setSelectedRowKeys,
+        }}
+        columns={columns}
+        dataSource={data}
+        rowKey="id"
+        pagination={{
+          pageSize: 10,
+        }}
+      />
+    </>
+  );
+}
+```
+
+## 自定义单元格
+```tsx
+import { Table, Avatar, Progress } from 'antd';
+
+const columns = [
+  {
+    title: '用户信息',
+    key: 'userInfo',
+    render: (_, record) => (
+      <div className="flex items-center space-x-3">
+        <Avatar src={record.avatar} />
+        <div>
+          <div className="font-medium">{record.name}</div>
+          <div className="text-sm text-tertiary">{record.title}</div>
+        </div>
+      </div>
+    ),
+  },
+  {
+    title: '进度',
+    dataIndex: 'progress',
+    key: 'progress',
+    render: (progress: number) => (
+      <Progress
+        percent={progress}
+        status={progress === 100 ? 'success' : 'active'}
+        showInfo={false}
+        size="small"
+      />
+    ),
+  },
+];
+```
+
+## 响应式表格
+```tsx
+import { Table } from 'antd';
+
+// ✅ 正确：使用 AntD 的响应式特性
+<Table
+  columns={columns}
+  dataSource={data}
+  scroll={{ x: true }}  // 水平滚动支持
+  pagination={{
+    responsive: true,
+    showSizeChanger: true,
+    pageSizeOptions: ['10', '20', '50'],
+  }}
+/>
+```
+
+## 常见错误
+```tsx
+// ❌ 错误：不要用 div 模拟表格样式
+<div className="border p-4">
+  <div className="font-bold">标题</div>
+  <div>内容</div>
+</div>
+
+// ❌ 错误：硬编码表格样式
+<Table
+  style={{ border: '1px solid #d9d9d9', borderRadius: '4px' }}
+/>
+
+// ✅ 正确：使用 AntD 内置属性
+<Table
+  bordered
+  size="middle"
+  pagination={false}
+/>
+```
+
+## 最佳实践总结
+1. 优先使用 AntD 的 `columns` 配置方式
+2. 分页功能使用内置 `pagination` 属性
+3. 加载状态用 `Spin` 包裹表格
+4. 批量操作配合 `rowSelection`
+5. 自定义单元格使用 `render` 函数
+6. 响应式表格使用 `scroll.x`
