@@ -21,7 +21,7 @@
 ### 方式 A：克隆整个设计规范
 
 ```bash
-git clone https://github.com/zhenbei/antd-tailwind-admin-design.git
+git clone https://github.com/zhenbeitech/antd-tailwind-admin-design.git
 ```
 
 ### 方式 B：直接复制所需文件
@@ -268,5 +268,4 @@ export default UserList;
 
 ## 📞 联系方式
 
-- GitHub Issues: [提交问题](https://github.com/zhenbei/antd-tailwind-admin-design/issues)
-- Email: [your-email@example.com](mailto:your-email@example.com)
+- GitHub Issues: [提交问题](https://github.com/zhenbeitech/antd-tailwind-admin-design/issues)

@@ -133,7 +133,7 @@
 
 ## 联系方式
 
-- GitHub Issues: [项目Issues页面](https://github.com/zhenbei/antd-tailwind-admin-design/issues)
+- GitHub Issues: [项目Issues页面](https://github.com/zhenbeitech/antd-tailwind-admin-design/issues)
 - Email: [维护者邮箱]
 - 社区: [社区链接]
 

@@ -47,4 +47,4 @@
 
 ## 贡献
 
-欢迎通过 [GitHub Issues](https://github.com/zhenbei/antd-tailwind-admin-design/issues) 报告问题或提出建议。
+欢迎通过 [GitHub Issues](https://github.com/zhenbeitech/antd-tailwind-admin-design/issues) 报告问题或提出建议。

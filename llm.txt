@@ -10,7 +10,7 @@
 
 ```bash
 # 克隆整个设计规范
-git clone https://github.com/zhenbei/antd-tailwind-admin-design.git
+git clone https://github.com/zhenbeitech/antd-tailwind-admin-design.git
 
 # 或仅复制需要的文件
 cp -r tokens/* your-project/src/styles/
@@ -95,15 +95,15 @@ Seed (种子) → Map (映射) → Alias (别名) → Component (组件)
 
 ```
 antd-tailwind-admin-design/
-├── DESIGN.md                    # 设计规范（9节结构）
-├── tokens/                      # 样式 token 定义
-│   ├── tokens.css              # CSS 变量桥接
-│   └── styles.css             # Tailwind 入口
-├── components/                  # 组件实现
-│   ├── layout.tsx              # 布局组件
-│   └── button.example.yaml     # 组件示例
-└── pages/                      # 页面模板
-    └── list-page.template.tsx  # 列表页面模板
+├── DESIGN.md               # 设计规范（9节结构）
+├── tokens/                 # 样式 token 定义
+│ ├── tokens.css          # CSS 变量桥接
+│ └── styles.css          # Tailwind 入口
+├── components/             # 组件实现
+│ ├── layout.tsx          # 布局组件
+│ └── button.example.yaml # 组件示例
+└── pages/                  # 页面模板
+└── list-page.template.tsx  # 列表页面模板
 ```
 
 ### 贡献指南

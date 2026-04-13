@@ -6,7 +6,7 @@
 
 ### 报告 Bug
 
-如果您发现了 bug，请通过 [GitHub Issues](https://github.com/zhenbei/antd-tailwind-admin-design/issues) 提交报告。请包含：
+如果您发现了 bug，请通过 [GitHub Issues](https://github.com/zhenbeitech/antd-tailwind-admin-design/issues) 提交报告。请包含：
 
 1. **重现步骤** - 如何重现这个 bug
 2. **期望行为** - 您期望发生什么
